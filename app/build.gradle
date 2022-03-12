@@ -74,6 +74,8 @@ dependencies {
     // check network status
     implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.8'
 
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+
 
     // test
     testImplementation 'junit:junit:4.13.2'
