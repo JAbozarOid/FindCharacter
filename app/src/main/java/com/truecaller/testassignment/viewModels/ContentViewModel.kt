@@ -20,17 +20,17 @@ class ContentViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _findTenthCharacter: LiveEvent<ApiResponse<Unit>> =
+    private val _findTenthCharacter: LiveEvent<ApiResponse<String>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
-    val findTenthCharacter: LiveData<ApiResponse<Unit>> get() = _findTenthCharacter
+    val findTenthCharacter: LiveData<ApiResponse<String>> get() = _findTenthCharacter
 
-    private val _findEveryTenthCharacter: LiveEvent<ApiResponse<Unit>> =
+    private val _findEveryTenthCharacter: LiveEvent<ApiResponse<String>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
-    val findEveryTenthCharacter: LiveData<ApiResponse<Unit>> get() = _findEveryTenthCharacter
+    val findEveryTenthCharacter: LiveData<ApiResponse<String>> get() = _findEveryTenthCharacter
 
-    private val _wordCounter: LiveEvent<ApiResponse<Unit>> =
+    private val _wordCounter: LiveEvent<ApiResponse<String>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
-    val wordCounter: LiveData<ApiResponse<Unit>> get() = _wordCounter
+    val wordCounter: LiveData<ApiResponse<String>> get() = _wordCounter
 
 
     fun findTenthCharacter() {

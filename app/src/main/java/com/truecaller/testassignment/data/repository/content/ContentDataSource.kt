@@ -7,15 +7,15 @@ import javax.inject.Inject
 
 class ContentDataSource @Inject constructor(private var contentApi: ContentApi) {
 
-    fun findTenthCharacter(): LiveData<ApiResponse<Unit>> {
+    fun findTenthCharacter(): LiveData<ApiResponse<String>> {
         return contentApi.findTenthCharacter()
     }
 
-    fun findEveryTenthCharacter(): LiveData<ApiResponse<Unit>> {
+    fun findEveryTenthCharacter(): LiveData<ApiResponse<String>> {
         return contentApi.findEveryTenthCharacter()
     }
 
-    fun wordCounter(): LiveData<ApiResponse<Unit>> {
+    fun wordCounter(): LiveData<ApiResponse<String>> {
         return contentApi.wordCounter()
     }
 }

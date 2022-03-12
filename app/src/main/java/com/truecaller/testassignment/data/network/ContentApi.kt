@@ -7,13 +7,13 @@ import retrofit2.http.POST
 interface ContentApi {
 
     @POST("life-as-an-android-engineer")
-    fun findTenthCharacter(): LiveData<ApiResponse<Unit>>
+    fun findTenthCharacter(): LiveData<ApiResponse<String>>
 
 
     @POST("life-as-an-android-engineer")
-    fun findEveryTenthCharacter(): LiveData<ApiResponse<Unit>>
+    fun findEveryTenthCharacter(): LiveData<ApiResponse<String>>
 
 
     @POST("life-as-an-android-engineer")
-    fun wordCounter(): LiveData<ApiResponse<Unit>>
+    fun wordCounter(): LiveData<ApiResponse<String>>
 }

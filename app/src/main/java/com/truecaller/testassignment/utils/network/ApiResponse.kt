@@ -23,6 +23,7 @@ sealed class ApiResponse<T> {
                 errorMessage?.contains(ERROR_NO_SERVER, true) == true -> {
                     ERROR_NO_NETWORK
                 }
+
                 else -> {
                     ERROR_GENERAL_ERROR
                 }

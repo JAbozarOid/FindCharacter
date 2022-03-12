@@ -19,7 +19,7 @@ class NetworkListener @Inject constructor() :
         networkMonitor()
     }
 
-    var isConnected = false
+    var isConnected = true
 
     @SuppressLint("CheckResult")
     private fun networkMonitor() {
