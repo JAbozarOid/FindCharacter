@@ -27,10 +27,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun build() {
-        findTenthCharacter()
+        requestFindTenthCharacter()
+
+        observeFindTenthCharacter()
     }
 
-    private fun findTenthCharacter() {
+    private fun requestFindTenthCharacter() {
+        mContentViewModel.findTenthCharacter()
+    }
 
+    private fun observeFindTenthCharacter() {
+        mContentViewModel.findTenthCharacter.observe(this) {
+            mBinding?.tvTenthCharResult?.text = it.toString()
+        }
     }
 }

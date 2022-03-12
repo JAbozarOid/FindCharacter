@@ -3,7 +3,7 @@ package com.truecaller.testassignment.utils.constants
 class ApiConstants {
 
     companion object {
-        const val BASE_URL = "https://truecaller.blog/2018/01/22"
+        const val BASE_URL = "https://truecaller.blog/2018/01/22/"
 
 
         const val ERROR_TIME_OUT = "Response Timeout"

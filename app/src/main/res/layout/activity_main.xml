@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_tenth_char_result" />
 
     <TextView
-        android:id="@+id/tv_every_tenth_char"
+        android:id="@+id/tv_every_tenth_char_result"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_margin="8dp"
@@ -61,10 +61,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_every_tenth_char" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_every_tenth_char_result" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_word_counter"
+        android:id="@+id/rec_word_counter_result"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
