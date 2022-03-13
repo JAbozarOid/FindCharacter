@@ -78,6 +78,7 @@ dependencies {
     // for by viewModels
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 
     // test
     testImplementation 'junit:junit:4.13.2'
