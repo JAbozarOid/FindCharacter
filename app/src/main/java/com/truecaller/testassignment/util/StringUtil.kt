@@ -20,11 +20,12 @@ object StringUtil {
         return arrayListResult
     }
 
-    // words counter
+
     fun findWordsFromString(text: String): List<String> {
         return text.split(" ").toList()
     }
 
+    // words Occurrence
     fun findOccurrenceOfEachWord(text: List<String>): Map<String, Int> {
         val occurrenceMap: MutableMap<String, Int> = HashMap()
         for (str in text) {
