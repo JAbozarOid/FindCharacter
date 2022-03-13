@@ -1,16 +1,9 @@
 package com.truecaller.testassignment.util
 
-import android.util.Log
-import com.truecaller.testassignment.viewModels.ContentViewModel
-
 object StringUtil {
 
     // find 10th character
-    fun findTenthCharacter(text: String) : String {
-        Log.d(
-            ContentViewModel.TAG,
-            "findTenthCharacter: Success ${text}"
-        )
+    fun findTenthCharacter(text: String): String {
         return text[9].toString()
     }
 
@@ -31,7 +24,7 @@ object StringUtil {
     fun findWordsFromString(text: String): List<String> {
         return text.split(" ").toList()
     }
-    
+
     fun findOccurrenceOfEachWord(text: List<String>): Map<String, Int> {
         val occurrenceMap: MutableMap<String, Int> = HashMap()
         for (str in text) {

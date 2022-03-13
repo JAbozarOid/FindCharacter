@@ -1,13 +1,14 @@
 package com.truecaller.testassignment.data.network
 
-import android.util.Log
 import com.truecaller.testassignment.data.repository.BlogContentRepository
+import com.truecaller.testassignment.util.StringUtil
+import com.truecaller.testassignment.util.StringUtil.findWordsFromString
 import com.truecaller.testassignment.util.constants.ApiConstants.Companion.BASE_URL
-import junit.framework.Assert.assertNotNull
+import com.truecaller.testassignment.util.network.ApiResponse
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,14 +20,13 @@ import java.util.concurrent.TimeUnit
 @RunWith(JUnit4::class)
 class BlogContentServiceTest {
 
-    private val server: MockWebServer = MockWebServer()
-    private val MOCK_WEBSERVER_PORT = 8000
     lateinit var blogContentService: BlogContentService
     lateinit var blogContentRepository: BlogContentRepository
 
+    val stringUtil = StringUtil
+
     @Before
     fun init() {
-        server.start(MOCK_WEBSERVER_PORT)
         val okhttpBuilder = OkHttpClient().newBuilder().readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS).build()
 
@@ -39,27 +39,33 @@ class BlogContentServiceTest {
         blogContentRepository = BlogContentRepository(blogContentService)
     }
 
-    @After
-    fun shutdown() {
-        server.shutdown()
-    }
-
-    @Test
-    fun `read sample success json file`() {
-        val reader = FileReader("blogContent.html")
-        assertNotNull(reader.content)
-    }
-
-
     @Test
     fun `fetch blog content and check if response is not empty`() {
         // Act
         runBlocking {
             val actualResponse = blogContentRepository.getBlogContent()
             // Assert
-            assert(actualResponse.toString().isNotEmpty())
+            assert(actualResponse is ApiResponse.Success)
         }
+    }
 
+
+    @Test
+    fun `func findTenthChar`() {
+        val findTenthChar: String = stringUtil.findTenthCharacter("abozar raghibdoust")
+        assertThat(findTenthChar, equalTo("g"))
+    }
+
+    @Test
+    fun `func findEveryTenthChar`() {
+        val findEveryTenthChar: List<Char> = stringUtil.findEveryTenthCharacter("abozar raghibdoust")
+        assertThat(findEveryTenthChar.toString(), equalTo("[g]"))
+    }
+
+    @Test
+    fun `func findOccurrenceOfEachWord`() {
+        val findOccurrenceOfEachWord: Map<String, Int> = stringUtil.findOccurrenceOfEachWord(findWordsFromString("abozarraghibdoust completed his test assignment"))
+        assertThat(findOccurrenceOfEachWord.toString(), equalTo("{abozarraghibdoust=1, his=1, test=1, assignment=1, completed=1}"))
     }
 
 }
