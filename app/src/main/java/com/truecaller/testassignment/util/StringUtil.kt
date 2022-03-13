@@ -1,14 +1,17 @@
-package com.truecaller.testassignment.utils.manager
+package com.truecaller.testassignment.util
 
-import javax.inject.Singleton
+import android.util.Log
+import com.truecaller.testassignment.viewModels.ContentViewModel
 
-
-@Singleton
-class FindCharacterManager {
+object StringUtil {
 
     // find 10th character
-    fun findTenthCharacter(text: String) : Char {
-        return text[9]
+    fun findTenthCharacter(text: String) : String {
+        Log.d(
+            ContentViewModel.TAG,
+            "findTenthCharacter: Success ${text}"
+        )
+        return text[9].toString()
     }
 
 
@@ -26,10 +29,9 @@ class FindCharacterManager {
 
     // words counter
     fun findWordsFromString(text: String): List<String> {
-        return text.split("").toList()
+        return text.split(" ").toList()
     }
-
-
+    
     fun findOccurrenceOfEachWord(text: List<String>): Map<String, Int> {
         val occurrenceMap: MutableMap<String, Int> = HashMap()
         for (str in text) {

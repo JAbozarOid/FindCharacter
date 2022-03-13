@@ -1,8 +1,7 @@
 package com.truecaller.testassignment.di
 
-import com.truecaller.testassignment.data.network.ContentApi
-import com.truecaller.testassignment.utils.constants.ApiConstants.Companion.BASE_URL
-import com.truecaller.testassignment.utils.network.LiveDataCallAdapterFactory
+import com.truecaller.testassignment.data.network.BlogContentService
+import com.truecaller.testassignment.util.constants.ApiConstants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,8 +26,8 @@ object RetrofitNetworkModule {
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val okhttpBuilder =
-            OkHttpClient().newBuilder().readTimeout(15, TimeUnit.SECONDS)
-                .connectTimeout(15, TimeUnit.SECONDS)
+            OkHttpClient().newBuilder().readTimeout(100, TimeUnit.MILLISECONDS)
+                .connectTimeout(100, TimeUnit.MILLISECONDS)
                 .addInterceptor(interceptor)
         return okhttpBuilder.build()
     }
@@ -51,7 +50,6 @@ object RetrofitNetworkModule {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
@@ -61,8 +59,8 @@ object RetrofitNetworkModule {
     fun provideContentApiService(
         @CloudRetrofit
         retrofit: Retrofit
-    ): ContentApi {
-        return retrofit.create(ContentApi::class.java)
+    ): BlogContentService {
+        return retrofit.create(BlogContentService::class.java)
     }
 
 
