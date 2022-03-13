@@ -58,14 +58,14 @@ class BlogContentServiceTest {
 
     @Test
     fun `func findEveryTenthChar`() {
-        val findEveryTenthChar: List<Char> = stringUtil.findEveryTenthCharacter("abozar raghibdoust")
-        assertThat(findEveryTenthChar.toString(), equalTo("[g]"))
+        val findEveryTenthChar: List<Char> = stringUtil.findEveryTenthCharacter("abozar raghibdoust abozar raghibdoust")
+        assertThat(findEveryTenthChar.toString(), equalTo("[g, a, h]"))
     }
 
     @Test
     fun `func findOccurrenceOfEachWord`() {
-        val findOccurrenceOfEachWord: Map<String, Int> = stringUtil.findOccurrenceOfEachWord(findWordsFromString("abozarraghibdoust completed his test assignment"))
-        assertThat(findOccurrenceOfEachWord.toString(), equalTo("{abozarraghibdoust=1, his=1, test=1, assignment=1, completed=1}"))
+        val findOccurrenceOfEachWord: Map<String, Int> = stringUtil.findOccurrenceOfEachWord(findWordsFromString("abozarraghibdoust completed completed his his his test test test test assignment assignment assignment assignment assignment"))
+        assertThat(findOccurrenceOfEachWord.toString(), equalTo("{abozarraghibdoust=1, his=3, test=4, assignment=5, completed=2}"))
     }
 
 }
