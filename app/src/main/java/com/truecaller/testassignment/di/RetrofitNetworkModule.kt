@@ -9,7 +9,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Qualifier
@@ -26,31 +25,23 @@ object RetrofitNetworkModule {
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val okhttpBuilder =
-            OkHttpClient().newBuilder().readTimeout(100, TimeUnit.MILLISECONDS)
-                .connectTimeout(100, TimeUnit.MILLISECONDS)
+            OkHttpClient().newBuilder().readTimeout(15, TimeUnit.SECONDS)
+                .connectTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
         return okhttpBuilder.build()
     }
 
-    @CloudRetrofit
-    @Singleton
-    @Provides
-    fun provideConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
 
     @CloudRetrofit
     @Singleton
     @Provides
     fun provideRetrofitInstance(
         @CloudRetrofit okHttpClient: OkHttpClient,
-        @CloudRetrofit gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(gsonConverterFactory)
             .build()
     }
 
