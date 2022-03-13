@@ -32,48 +32,23 @@ class ContentViewModel @Inject constructor(
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
     val wordCounter: LiveData<ApiResponse<String>> get() = _wordCounter
 
+    private val _getContent: LiveEvent<ApiResponse<String>> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
+    val  getContent : LiveData<ApiResponse<String>> get() = _getContent
 
-    fun findTenthCharacter() {
-        findTenthCharacterSafeCall()
+
+    fun getContent() {
+        getContentSafeCall()
     }
 
-    fun findEveryTenthCharacter() {
-        findEveryTenthCharacterSafeCall()
-    }
 
-    fun wordCounter() {
-        wordCounterSafeCall()
-    }
-
-    private fun findTenthCharacterSafeCall() {
+    private fun getContentSafeCall() {
         _findTenthCharacter.requestInTryCatch {
             it.postValue(doIfConnectedResponse(networkListener) {
                 val response =
-                    contentRepository.remote.findTenthCharacter(
+                    contentRepository.remote.getContent(
                     )
                 _findTenthCharacter.addSourceGeneric(response)
-            })
-        }
-    }
-
-    private fun findEveryTenthCharacterSafeCall() {
-        _findEveryTenthCharacter.requestInTryCatch {
-            it.postValue(doIfConnectedResponse(networkListener) {
-                val response =
-                    contentRepository.remote.findEveryTenthCharacter(
-                    )
-                _findEveryTenthCharacter.addSourceGeneric(response)
-            })
-        }
-    }
-
-    private fun wordCounterSafeCall() {
-        _wordCounter.requestInTryCatch {
-            it.postValue(doIfConnectedResponse(networkListener) {
-                val response =
-                    contentRepository.remote.wordCounter(
-                    )
-                _wordCounter.addSourceGeneric(response)
             })
         }
     }

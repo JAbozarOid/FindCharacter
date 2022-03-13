@@ -1,10 +1,10 @@
 package com.truecaller.testassignment.data.repository
 
-import com.truecaller.testassignment.data.repository.content.ContentDataSource
+import com.truecaller.testassignment.data.repository.contentDataSource.ContentDataSource
 import javax.inject.Inject
 
 class ContentRepository @Inject constructor(
-    remoteDataSource : ContentDataSource
+    remoteDataSource: ContentDataSource
 ) {
 
     val remote = remoteDataSource

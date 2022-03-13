@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_request -> {
-                requestFindTenthCharacter()
+                requestGetContent()
             }
         }
     }
@@ -40,18 +40,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         setOnClickListener()
 
-        observeFindTenthCharacter()
+        observeGetContent()
     }
 
     private fun setOnClickListener() {
         mBinding?.btnRequest?.setOnClickListener(this)
     }
 
-    private fun requestFindTenthCharacter() {
-        mContentViewModel.findTenthCharacter()
+    private fun requestGetContent() {
+        mContentViewModel.getContent()
     }
 
-    private fun observeFindTenthCharacter() {
+    private fun observeGetContent() {
         mContentViewModel.findTenthCharacter.observe(this) {
             when (it) {
                 is ApiResponse.Error -> {

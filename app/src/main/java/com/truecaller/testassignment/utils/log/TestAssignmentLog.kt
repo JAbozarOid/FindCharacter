@@ -3,7 +3,7 @@ package com.truecaller.testassignment.utils.log
 import android.util.Log
 import com.truecaller.testassignment.BuildConfig
 
-class PtLog {
+class TestAssignmentLog {
 
     companion object {
 
